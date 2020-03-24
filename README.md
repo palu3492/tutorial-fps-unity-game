@@ -1,2 +1,1 @@
-# tutorial-fps-unity-game
-Play newest build https://connect.unity.com/p/fps-tutorial-106
+Collection of Unity games I built following tutorials from Unity and YouTube.
