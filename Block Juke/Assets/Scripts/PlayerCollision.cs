@@ -10,6 +10,7 @@ public class PlayerCollision : MonoBehaviour
     public int cubesInRow = 5;
     public int collisionForce = 1000;
     public float pieceMass = 50;
+    public Camera mainCamera;
 
     public PlayerMovement movementScript;
     
@@ -19,11 +20,17 @@ public class PlayerCollision : MonoBehaviour
         {
             movementScript.enabled = false;
             explode();
+            // rotateCamera();
             FindObjectOfType<GameManager>().EndGame();
         }
     }
 
-    private void explode()
+    void rotateCamera()
+    {
+        mainCamera.GetComponent<Animator>().enabled = true;
+    }
+
+    void explode()
     {
         gameObject.SetActive(false);
         // loop 3 times to create 5x5x5 pieces in x,y,z coordinates
@@ -51,7 +58,7 @@ public class PlayerCollision : MonoBehaviour
         piece.AddComponent<Rigidbody>();
         // piece.GetComponent<Rigidbody>().useGravity = false;
         piece.GetComponent<Rigidbody>().mass = pieceMass;
-        piece.GetComponent<Rigidbody>().AddForce(0, 0, collisionForce);
+        piece.GetComponent<Rigidbody>().AddForce(0, 0, collisionForce * Time.deltaTime, ForceMode.VelocityChange);
         piece.GetComponent<Renderer>().material = shader;
     }
 }
