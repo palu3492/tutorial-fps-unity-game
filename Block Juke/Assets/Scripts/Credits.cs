@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 using Debug = UnityEngine.Debug;
+using UnityEngine.SceneManagement;
 
 public class Credits : MonoBehaviour
 {
@@ -10,5 +8,11 @@ public class Credits : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void PlayAgain()
+    {
+        Debug.Log("Play Again");
+        SceneManager.LoadScene(1);
     }
 }

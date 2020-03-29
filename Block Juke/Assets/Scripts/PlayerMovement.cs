@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -7,16 +8,19 @@ public class PlayerMovement : MonoBehaviour
     public float sidewaysForce = 500f;
     public float upwardForce = 10f;
 
-    // Start is called before the first frame update
-
     // Update is called once per frame
     // Unity prefers FixedUpdate to Update when working with physics?
     void FixedUpdate()
     {
-        rb.AddForce(0, 0, forwardForce  * Time.deltaTime); // Move cube forward
+
+        // rigidbody.velocity = constantSpeed * (rigidbody.velocity.normalized);
+        // rb.AddForce(0, 0, forwardForce * Time.deltaTime, ForceMode.VelocityChange); // Move cube forward
+
         
-        // Add drag to sideways movement
         Vector3 velocity = rb.velocity;
+        // Move cube forward
+        velocity.z = forwardForce * Time.deltaTime;
+        // Add drag to sideways movement
         velocity.x *= 0.85f;
         rb.velocity = velocity;
         
@@ -30,12 +34,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         }
-        
+        /*
         if (Input.GetKey("space") && rb.position.y <= 1.1f)
         {
             rb.AddForce(0, upwardForce, 0);
         }
-        
+        */
         if (rb.position.y < -1f)
         {
             FindObjectOfType<GameManager>().EndGame();
