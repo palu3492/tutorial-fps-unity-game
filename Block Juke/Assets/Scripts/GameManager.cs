@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     {
         completeLevelUI.SetActive(true);
     }
+    
     public void EndGame()
     {
         if (!gameOver)
@@ -37,6 +38,11 @@ public class GameManager : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    
+    public void Crash()
+    {
+        SceneManager.LoadScene("Scenes/Crash");
     }
     
 }

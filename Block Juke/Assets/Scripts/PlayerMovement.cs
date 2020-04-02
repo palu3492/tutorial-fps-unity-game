@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float forwardForce = 2000f;
     public float sidewaysForce = 500f;
     public float upwardForce = 10f;
+    public AnimateGas GasAnimator;
 
     // Update is called once per frame
     // Unity prefers FixedUpdate to Update when working with physics?
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a"))
         {
             rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+            GasAnimator.EmitGasRight();
         }
         /*
         if (Input.GetKey("space") && rb.position.y <= 1.1f)
