@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,6 +7,17 @@ public class PlayerMovement : MonoBehaviour
     public float sidewaysForce = 500f;
     public float upwardForce = 10f;
     public AnimateGas GasAnimator;
+    // private bool _onGround = false;
+
+    /*
+    private void OnCollisionStay(Collision other)
+    {
+        if (other.gameObject.name == "Ground" || other.gameObject.CompareTag("Ramp"))
+        {
+            _onGround = true;
+        }
+    }
+    */
 
     // Update is called once per frame
     // Unity prefers FixedUpdate to Update when working with physics?
@@ -21,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 velocity = rb.velocity;
         // Move cube forward
         velocity.z = forwardForce * Time.deltaTime;
-        // Add drag to sideways movement
+        // Add drag to sideways movement so the cube stops
         velocity.x *= 0.85f;
         rb.velocity = velocity;
         
@@ -34,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey("a"))
         {
             rb.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
-            GasAnimator.EmitGasRight();
+            // GasAnimator.EmitGasRight();
         }
         /*
         if (Input.GetKey("space") && rb.position.y <= 1.1f)

@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   restartDelay: 2
   completeLevelUI: {fileID: 0}
+  player: {fileID: 0}
+  fakePlayer: {fileID: 0}
